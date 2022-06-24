@@ -23,5 +23,11 @@ public class Movement : MonoBehaviour
         Vector2 steering = _steeringInput.ReadValue<Vector2>();
 		Vector3 delta = _speed * steering * Time.deltaTime;
 		transform.position = transform.position + delta;
+        
     }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        Destroy(gameObject);
+    }
+    
 }

@@ -37,7 +37,11 @@ public class Fire : MonoBehaviour
                 _lastShotTime = Time.time;
             }            
         }
-    }        
+    }
+    void OnTriggerEnter2D(Collider2D other) {
+        Destroy(gameObject);
+    }
+    
 }
    
 

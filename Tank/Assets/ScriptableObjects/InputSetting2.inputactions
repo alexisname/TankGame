@@ -1,0 +1,135 @@
+{
+    "name": "InputSetting2",
+    "maps": [
+        {
+            "name": "TankControl2",
+            "id": "32258243-e6e3-48ff-9b1f-ab523bc8ce05",
+            "actions": [
+                {
+                    "name": "TankMove",
+                    "type": "PassThrough",
+                    "id": "9ae525c3-e217-42c9-a1dd-baa2e3de2bd1",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Fire",
+                    "type": "Button",
+                    "id": "85a8aaab-1378-4061-8d57-86fd732394d4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TurretMove",
+                    "type": "PassThrough",
+                    "id": "8625b19b-b894-44b2-9310-9c7defbbe2f5",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "4dee1819-d565-4e2c-ac1d-d3e5ac98b1e1",
+                    "path": "2DVector(mode=2)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "TankControl2",
+                    "action": "TankMove",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "7d4eb87e-de73-4473-bf95-6dd305eddbab",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "TankControl2",
+                    "action": "TankMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "9553ae20-56de-418c-897b-1e1816b0ccbc",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "TankControl2",
+                    "action": "TankMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "2bf98e88-f559-48b0-a093-53e74b681c64",
+                    "path": "<Keyboard>/rightCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "TankControl2",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "34b8e6d1-b402-44ba-afcc-8f6206f1d0b1",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "TankControl2",
+                    "action": "TurretMove",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "efee06cb-13e0-458f-86bf-71915dd17041",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "TankControl2",
+                    "action": "TurretMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "e496ab16-d982-4948-a9f3-853c4d04e120",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "TankControl2",
+                    "action": "TurretMove",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "TankControl2",
+            "bindingGroup": "TankControl2",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<XInputController>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
