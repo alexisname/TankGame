@@ -21,16 +21,18 @@ public class TurretRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rotate();
+        if(_rotateInput!=null){
+            rotate();
+        }
     }
 
     public void rotate(){
-        Vector3 currRotation = transform.eulerAngles;
+        Vector3 currRotation = transform.localEulerAngles;
         float rotation = _rotateInput.ReadValue<Vector2>().y*_rotationSpeed;
         if (currRotation.z > 180) currRotation.z -= 360f;
 
         currRotation.z = Mathf.Clamp(currRotation.z + rotation, ROTATION_MIN, ROTATION_MAX);
-        transform.rotation = Quaternion.Euler(currRotation);
+        transform.localRotation = Quaternion.Euler(currRotation);
 
     }
 }

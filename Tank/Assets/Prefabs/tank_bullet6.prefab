@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4275415843979158621}
   - component: {fileID: 5057873680233030629}
   - component: {fileID: -8748689538763350842}
+  - component: {fileID: 5844874982216034216}
   m_Layer: 0
   m_Name: tank_bullet6
   m_TagString: Untagged
@@ -106,3 +107,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!70 &5844874982216034216
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5218308457530720953}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.25, y: 0.16}
+  m_Direction: 1
