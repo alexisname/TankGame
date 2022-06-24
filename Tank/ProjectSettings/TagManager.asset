@@ -11,14 +11,14 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - TankBody1
+  - TankTrack1
+  - TankTurret1
+  - TankBullet1
+  - TankBody2
+  - TankTrack2
+  - TankTurret2
+  - TankBullet2
   - 
   - 
   - 
