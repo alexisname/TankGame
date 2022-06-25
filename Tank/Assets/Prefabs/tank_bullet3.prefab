@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5554139806359903830}
   - component: {fileID: 2908618358127983617}
   - component: {fileID: 4359019348601779807}
+  - component: {fileID: 1229855928865616117}
   m_Layer: 13
   m_Name: tank_bullet3
   m_TagString: Untagged
@@ -96,7 +97,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 6.104983e-11, y: 0.00051212317}
@@ -123,3 +124,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1229855928865616117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3679321311869428986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190ea9ee266e5dc42b48942511011916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

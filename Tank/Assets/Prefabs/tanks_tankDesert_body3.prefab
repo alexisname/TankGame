@@ -118,7 +118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7838887003394106581}
   - component: {fileID: 7838887003394106582}
-  - component: {fileID: 1696174146210628301}
+  - component: {fileID: 4216971704784789545}
   m_Layer: 7
   m_Name: tanks_tankTracks1
   m_TagString: Untagged
@@ -193,19 +193,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &1696174146210628301
-BoxCollider:
+--- !u!61 &4216971704784789545
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7838887003394106580}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.083407536}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.74, y: 0.35}
+    newSize: {x: 0.74, y: 0.35}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.74, y: 0.18458562, z: 0.20000002}
-  m_Center: {x: 0, y: -0.08270727, z: 0}
+  m_Size: {x: 0.74, y: 0.18318489}
+  m_EdgeRadius: 0
 --- !u!1 &7838887005164895225
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,9 +230,9 @@ GameObject:
   - component: {fileID: 7838887005164895227}
   - component: {fileID: 7838887005164895226}
   - component: {fileID: 4247288940499597849}
-  - component: {fileID: 6026121504770912947}
-  - component: {fileID: 7086032561101651826}
   - component: {fileID: 1783182629474762094}
+  - component: {fileID: 5869058039833398939}
+  - component: {fileID: 8164992105880511699}
   m_Layer: 6
   m_Name: tanks_tankDesert_body3
   m_TagString: Untagged
@@ -340,41 +353,6 @@ PolygonCollider2D:
       - {x: 0.37531415, y: -0.08340222}
       - {x: 0.28617564, y: 0.018319074}
       - {x: 0.19315732, y: 0.0916532}
---- !u!50 &6026121504770912947
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7838887005164895225}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &7086032561101651826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7838887005164895225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa46b6ddd78bc9d40b80deb91799c89c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerInput: {fileID: 1783182629474762094}
-  _speed: 5
 --- !u!114 &1783182629474762094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,6 +383,43 @@ MonoBehaviour:
   m_DefaultActionMap: TankControl
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!50 &5869058039833398939
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7838887005164895225}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &8164992105880511699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7838887005164895225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa46b6ddd78bc9d40b80deb91799c89c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerInput: {fileID: 1783182629474762094}
+  _speed: 5
+  _turret: {fileID: 4059041862978011163}
+  _bulletPrefab: {fileID: 5218308457530720953, guid: af2f9c83735726d46b996042237fa2e8, type: 3}
 --- !u!1 &7896859612744537042
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,8 +431,6 @@ GameObject:
   - component: {fileID: 5020682938177519318}
   - component: {fileID: 4940523311534883397}
   - component: {fileID: 3600157394212455733}
-  - component: {fileID: 2256149138452585206}
-  - component: {fileID: 1589914231834874699}
   m_Layer: 8
   m_Name: tanks_turret2
   m_TagString: Untagged
@@ -509,48 +522,3 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0051690745, y: -6.1620165e-10}
   m_Size: {x: 0.49033886, y: 0.15000051}
   m_Direction: 1
---- !u!114 &2256149138452585206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7896859612744537042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21125f7e00883b04da1875ac52f02b84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerInput: {fileID: 1589914231834874699}
-  _turret: {fileID: 4059041862978011163}
-  _bulletPrefab: {fileID: 5218308457530720953, guid: af2f9c83735726d46b996042237fa2e8, type: 3}
---- !u!114 &1589914231834874699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7896859612744537042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: f0df4ee4f15d5f5448dbd2b25d293737, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: TankControl
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
