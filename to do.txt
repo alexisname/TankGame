@@ -1,0 +1,4 @@
+move left and right, actually should be back and forth, considering at slope
+friction at slope
+
+intensity bar

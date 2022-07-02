@@ -576,8 +576,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f201c95fb78c63849bcb9054ce54ccb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tankPrefabOne: {fileID: 7838887005164895225, guid: 867c284d63c377b4a9b4fa88af92217b, type: 3}
-  _tankPrefabTwo: {fileID: 8137057209490440116, guid: 50c4ab2de101ec742a0a6b673c1029d4, type: 3}
+  _tankPrefabOne: {fileID: 5385185325109634043, guid: d5af6e907cb2985428bfa6325cbdece7, type: 3}
+  _tankPrefabTwo: {fileID: 6350210955013263178, guid: 17806ae33ea9c1d46b4af81dab0dc845, type: 3}
 --- !u!4 &1130003424
 Transform:
   m_ObjectHideFlags: 0

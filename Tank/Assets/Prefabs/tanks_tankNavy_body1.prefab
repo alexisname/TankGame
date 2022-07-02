@@ -245,7 +245,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6616533369460164624}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.15, y: 0.0013333261, z: 0}
+  m_LocalPosition: {x: 0.138, y: 0.004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -321,7 +321,7 @@ BoxCollider2D:
   m_Offset: {x: 0.049218956, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.03, y: 0.5}
     oldSize: {x: 0.37, y: 0.09}
     newSize: {x: 0.37, y: 0.09}
     adaptiveTilingThreshold: 0.5
@@ -523,3 +523,4 @@ MonoBehaviour:
   _speed: 5
   _turret: {fileID: 986349813414025172}
   _bulletPrefab: {fileID: 3679321311869428986, guid: 443f895c5350ffc43a5f39e4be1373ef, type: 3}
+  _turnButton: {fileID: 0}

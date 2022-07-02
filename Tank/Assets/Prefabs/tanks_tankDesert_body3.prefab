@@ -318,7 +318,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 7838887005164895225}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6f1d579cd5bdb9144b483fe0cf023a3f, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -420,6 +420,7 @@ MonoBehaviour:
   _speed: 5
   _turret: {fileID: 4059041862978011163}
   _bulletPrefab: {fileID: 5218308457530720953, guid: af2f9c83735726d46b996042237fa2e8, type: 3}
+  _turnButton: {fileID: 0}
 --- !u!1 &7896859612744537042
 GameObject:
   m_ObjectHideFlags: 0
