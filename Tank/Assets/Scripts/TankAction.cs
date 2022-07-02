@@ -48,6 +48,8 @@ public class TankAction : MonoBehaviour
     float _rotationSpeed = 0.1f;
     private const float ROTATION_MIN = 0.0f;
     private const float ROTATION_MAX = 25.0f;
+
+    private int health = 100;
     InputAction _rotateInput;
     Vector2 direction;
 
@@ -85,6 +87,13 @@ public class TankAction : MonoBehaviour
         }
 
         fire();
+
+        if(health<=0){
+            Destroy(gameObject);
+            for(int i=0; i<_numOfPoints; i++){
+            Destroy(_points[i]);
+        }
+        }
         
     }
 
@@ -128,8 +137,9 @@ public class TankAction : MonoBehaviour
     //     }
     // }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        Destroy(gameObject);
+    void OnTriggerEnter2D(Collider2D _bulletPrefab) {
+        health -= 20;
+        
     }
     
 }
