@@ -50,6 +50,8 @@ public class TankAction : MonoBehaviour
     private const float ROTATION_MAX = 25.0f;
 
     private int health = 100;
+
+    bool facingRight;
     InputAction _rotateInput;
     Vector2 direction;
 
@@ -65,11 +67,18 @@ public class TankAction : MonoBehaviour
         for(int i=0; i<_numOfPoints; i++){
             _points[i] = Instantiate(_point, _bulletEmit.position, Quaternion.identity);
         }
+        if(gameObject.transform.localScale.x>0){
+            facingRight = true;
+        }
+        else if(gameObject.transform.localScale.x<0){
+            facingRight = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(_bulletEmit.localEulerAngles.z);
         Vector2 steering = _steeringInput.ReadValue<Vector2>();
 		Vector3 delta = _speed * steering * Time.deltaTime;
 		transform.position = transform.position + delta;
@@ -92,9 +101,30 @@ public class TankAction : MonoBehaviour
             Destroy(gameObject);
             for(int i=0; i<_numOfPoints; i++){
             Destroy(_points[i]);
+            }
         }
+
+        if(steering.x>0 && !facingRight){
+            flip();
+            _bulletEmit.rotation *= Quaternion.Euler(0,0,180);
+            // if(_bulletEmit.localEulerAngles.z==0){
+            //     _bulletEmit.rotation *= Quaternion.Euler(0,0,180); 
+            // }
+            // if(_bulletEmit.localEulerAngles.z==180){
+            //     _bulletEmit.rotation *= Quaternion.Euler(0,0,-180); 
+            // }       
+                
         }
-        
+        if(steering.x<0 && facingRight){
+            flip(); 
+            _bulletEmit.rotation *= Quaternion.Euler(0,0,180);
+            // if(_bulletEmit.localEulerAngles.z==0){
+            //     _bulletEmit.rotation *= Quaternion.Euler(0,0,180); 
+            // }
+            // if(_bulletEmit.localEulerAngles.z==180){
+            //     _bulletEmit.rotation *= Quaternion.Euler(0,0,-180); 
+            // }            
+        }        
     }
 
     public void rotate(){
@@ -121,6 +151,13 @@ public class TankAction : MonoBehaviour
                 _lastShotTime = Time.time;
             }            
         }
+    }
+
+    void flip(){
+        Vector3 currScale = gameObject.transform.localScale;
+        currScale.x *= -1;
+        gameObject.transform.localScale = currScale;
+        facingRight = !facingRight;
     }
     
 
