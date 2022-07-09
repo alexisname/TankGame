@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField]
+    GameObject _explosion;
     Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -23,6 +25,7 @@ public class Bullet : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle,Vector3.forward);
     }
     void OnTriggerEnter2D(Collider2D other) {
+        Instantiate(_explosion,gameObject.transform.position,Quaternion.identity);
         Destroy(gameObject);
     }
 }

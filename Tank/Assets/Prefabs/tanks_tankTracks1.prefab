@@ -292,6 +292,7 @@ MonoBehaviour:
   _bulletEmit: {fileID: 1712550184200382388}
   _dirBullet: {fileID: 1556975252382316588}
   _bulletPrefab: {fileID: 5218308457530720953, guid: af2f9c83735726d46b996042237fa2e8, type: 3}
+  _explosion: {fileID: 139366, guid: 0e5f311bdf00cb0479351aab7ab17f31, type: 3}
   _point: {fileID: 858201297152750243, guid: ca84283929ce78a4b8e40ad15012486c, type: 3}
   _numOfPoints: 20
   _spaceBetweenPoints: 0.1

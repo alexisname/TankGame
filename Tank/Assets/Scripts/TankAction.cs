@@ -23,6 +23,9 @@ public class TankAction : MonoBehaviour
     GameObject _bulletPrefab;  
 
     [SerializeField]
+    GameObject _explosion;
+
+    [SerializeField]
     GameObject _point;
 
 
@@ -98,6 +101,7 @@ public class TankAction : MonoBehaviour
         fire();
 
         if(health<=0){
+            Instantiate(_explosion,gameObject.transform.position,Quaternion.identity);
             Destroy(gameObject);
             for(int i=0; i<_numOfPoints; i++){
             Destroy(_points[i]);
@@ -175,6 +179,8 @@ public class TankAction : MonoBehaviour
     // }
 
     void OnTriggerEnter2D(Collider2D _bulletPrefab) {
+
+        
         health -= 20;
         
     }
