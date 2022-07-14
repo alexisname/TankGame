@@ -122,7 +122,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &1229855928865616117
 MonoBehaviour:
@@ -137,3 +137,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _explosion: {fileID: 4635781463017119748, guid: 08084c77fe4bb7a4aa126375b480e31c, type: 3}
+  _radius: 0.2

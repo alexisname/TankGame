@@ -6,6 +6,9 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField]
     GameObject _explosion;
+
+    [SerializeField]
+    float _radius = 3.0f;
     Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -25,6 +28,10 @@ public class Bullet : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle,Vector3.forward);
     }
     void OnTriggerEnter2D(Collider2D other) {
+        if(other.CompareTag("Terrain")){
+            Terrain.instance.DestroyTerrain(gameObject.transform.position, _radius);
+            // Instantiate(_explosion,gameObject.transform.position,Quaternion.identity);
+        }
         Instantiate(_explosion,gameObject.transform.position,Quaternion.identity);
         Destroy(gameObject);
     }

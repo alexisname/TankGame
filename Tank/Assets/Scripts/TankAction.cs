@@ -36,12 +36,15 @@ public class TankAction : MonoBehaviour
     float _spaceBetweenPoints;
 
     // [SerializeField]
-    // Button _turnButton;    
+    // Button _turnButton;   
+
+    [SerializeField]
+    float fireSpeed = 500.0f;
 
     
     GameObject[] _points;
 
-    float fireSpeed = 500.0f;    
+        
     float _shotDelay;
     float _lastShotTime;
     InputAction _fireInput;
@@ -141,8 +144,9 @@ public class TankAction : MonoBehaviour
 
     }
 
-    Vector2 pointPosition(float t){               
-        Vector2 pointPos = (Vector2)_bulletEmit.position + (direction.normalized*_speed*t) + (0.5f*new Vector2(0,-0.23f)*(t*t));
+    Vector2 pointPosition(float t){
+        Vector2 p = _bulletEmit.position;               
+        Vector2 pointPos = p + (direction.normalized*fireSpeed*t) + (0.5f*Physics2D.gravity*(t*t));
         return pointPos;
     }
 
@@ -151,7 +155,7 @@ public class TankAction : MonoBehaviour
             float timeDelta = Time.time - _lastShotTime;
             if(timeDelta>=_shotDelay){
                 GameObject firedBullet = Instantiate(_bulletPrefab,_bulletEmit.position,_bulletEmit.rotation);
-                firedBullet.GetComponent<Rigidbody2D>().AddForce(_bulletEmit.right*fireSpeed);
+                firedBullet.GetComponent<Rigidbody2D>().AddForce(_bulletEmit.right*fireSpeed/* *mass */, ForceMode2D.Impulse);
                 _lastShotTime = Time.time;
             }            
         }

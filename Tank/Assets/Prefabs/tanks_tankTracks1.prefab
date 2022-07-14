@@ -296,6 +296,7 @@ MonoBehaviour:
   _point: {fileID: 858201297152750243, guid: ca84283929ce78a4b8e40ad15012486c, type: 3}
   _numOfPoints: 20
   _spaceBetweenPoints: 0.1
+  fireSpeed: 10
 --- !u!114 &8205325295964032477
 MonoBehaviour:
   m_ObjectHideFlags: 0

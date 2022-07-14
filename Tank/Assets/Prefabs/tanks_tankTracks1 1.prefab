@@ -325,6 +325,7 @@ MonoBehaviour:
   _point: {fileID: 858201297152750243, guid: ca84283929ce78a4b8e40ad15012486c, type: 3}
   _numOfPoints: 20
   _spaceBetweenPoints: 0.1
+  fireSpeed: 5
 --- !u!50 &7491709990990324618
 Rigidbody2D:
   serializedVersion: 4
