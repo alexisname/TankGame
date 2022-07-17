@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class TankAction : MonoBehaviour
 {
@@ -52,14 +54,19 @@ public class TankAction : MonoBehaviour
     public static bool _playerTurn;
 
     float _rotationSpeed = 0.1f;
-    private const float ROTATION_MIN = 0.0f;
-    private const float ROTATION_MAX = 25.0f;
+    const float ROTATION_MIN = 0.0f;
+    const float ROTATION_MAX = 25.0f;
 
-    private int health = 100;
+    public int health = 100;
+    public int numOfShot = 1;
+    public int shots = 1;
+    public bool isTurn = false;
 
     bool facingRight;
     InputAction _rotateInput;
     Vector2 direction;
+
+    SpriteRenderer srPoints;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +77,7 @@ public class TankAction : MonoBehaviour
         _lastShotTime = 0.0f;
         _shotDelay = 0.5f;
         _points = new GameObject[_numOfPoints];
+
         for(int i=0; i<_numOfPoints; i++){
             _points[i] = Instantiate(_point, _bulletEmit.position, Quaternion.identity);
         }
@@ -79,59 +87,82 @@ public class TankAction : MonoBehaviour
         else if(gameObject.transform.localScale.x<0){
             facingRight = false;
         }
+        srPoints = _point.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(_bulletEmit.localEulerAngles.z);
-        Vector2 steering = _steeringInput.ReadValue<Vector2>();
-		Vector3 delta = _speed * steering * Time.deltaTime;
-		transform.position = transform.position + delta;
-
-        Vector2 firePos = _bulletEmit.position;
-        Vector2 dirPos = _dirBullet.position;
-        direction = dirPos-firePos;
-
-        if(_rotateInput!=null){
-            rotate();
-        }
-
-        for(int i=0; i<_numOfPoints; i++){
-            _points[i].transform.position = pointPosition(i*_spaceBetweenPoints);
-        }
-
-        fire();
-
+        
         if(health<=0){
-            Instantiate(_explosion,gameObject.transform.position,Quaternion.identity);
-            Destroy(gameObject);
+                Instantiate(_explosion,gameObject.transform.position,Quaternion.identity);
+                Destroy(gameObject);
+                for(int i=0; i<_numOfPoints; i++){
+                Destroy(_points[i]);
+                }
+            }
+
+        if(!isTurn){
             for(int i=0; i<_numOfPoints; i++){
-            Destroy(_points[i]);
+            _points[i].SetActive(false);
             }
         }
+        
+        if(isTurn){
+            for(int i=0; i<_numOfPoints; i++){
+            _points[i].SetActive(true);
+            }
+            //numOfShot = shots;
+            //Debug.Log(_bulletEmit.localEulerAngles.z);
+            Vector2 steering = _steeringInput.ReadValue<Vector2>();
+            Vector3 delta = _speed * steering * Time.deltaTime;
+            transform.position = transform.position + delta;
 
-        if(steering.x>0 && !facingRight){
-            flip();
-            _bulletEmit.rotation *= Quaternion.Euler(0,0,180);
-            // if(_bulletEmit.localEulerAngles.z==0){
-            //     _bulletEmit.rotation *= Quaternion.Euler(0,0,180); 
+            Vector2 firePos = _bulletEmit.position;
+            Vector2 dirPos = _dirBullet.position;
+            direction = dirPos-firePos;
+
+            if(_rotateInput!=null){
+                rotate();
+            }
+
+            for(int i=0; i<_numOfPoints; i++){
+                _points[i].transform.position = pointPosition(i*_spaceBetweenPoints);
+            }
+
+            fire();
+
+            // if(health<=0){
+            //     Instantiate(_explosion,gameObject.transform.position,Quaternion.identity);
+            //     Destroy(gameObject);
+            //     for(int i=0; i<_numOfPoints; i++){
+            //     Destroy(_points[i]);
+            //     }
             // }
-            // if(_bulletEmit.localEulerAngles.z==180){
-            //     _bulletEmit.rotation *= Quaternion.Euler(0,0,-180); 
-            // }       
-                
+
+            if(steering.x>0 && !facingRight){
+                flip();
+                _bulletEmit.rotation *= Quaternion.Euler(0,0,180);
+                // if(_bulletEmit.localEulerAngles.z==0){
+                //     _bulletEmit.rotation *= Quaternion.Euler(0,0,180); 
+                // }
+                // if(_bulletEmit.localEulerAngles.z==180){
+                //     _bulletEmit.rotation *= Quaternion.Euler(0,0,-180); 
+                // }       
+                    
+            }
+            if(steering.x<0 && facingRight){
+                flip(); 
+                _bulletEmit.rotation *= Quaternion.Euler(0,0,180);
+                // if(_bulletEmit.localEulerAngles.z==0){
+                //     _bulletEmit.rotation *= Quaternion.Euler(0,0,180); 
+                // }
+                // if(_bulletEmit.localEulerAngles.z==180){
+                //     _bulletEmit.rotation *= Quaternion.Euler(0,0,-180); 
+                // }            
+            } 
         }
-        if(steering.x<0 && facingRight){
-            flip(); 
-            _bulletEmit.rotation *= Quaternion.Euler(0,0,180);
-            // if(_bulletEmit.localEulerAngles.z==0){
-            //     _bulletEmit.rotation *= Quaternion.Euler(0,0,180); 
-            // }
-            // if(_bulletEmit.localEulerAngles.z==180){
-            //     _bulletEmit.rotation *= Quaternion.Euler(0,0,-180); 
-            // }            
-        }        
+                
     }
 
     public void rotate(){
@@ -156,6 +187,8 @@ public class TankAction : MonoBehaviour
             if(timeDelta>=_shotDelay){
                 GameObject firedBullet = Instantiate(_bulletPrefab,_bulletEmit.position,_bulletEmit.rotation);
                 firedBullet.GetComponent<Rigidbody2D>().AddForce(_bulletEmit.right*fireSpeed/* *mass */, ForceMode2D.Impulse);
+                numOfShot--;
+                //Debug.Log(numOfShot);
                 _lastShotTime = Time.time;
             }            
         }
@@ -182,11 +215,16 @@ public class TankAction : MonoBehaviour
     //     }
     // }
 
-    void OnTriggerEnter2D(Collider2D _bulletPrefab) {
+    // void OnTriggerEnter2D(Collider2D _bulletPrefab) {
 
         
-        health -= 20;
+    //     health -= 20;
         
+    // }
+    void OnCollisionEnter2D(Collision2D other){
+        if(other.collider.tag == "bullet"){
+            health -= 20;
+        }        
     }
     
 }
