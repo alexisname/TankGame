@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     float _radius = 3.0f;
 
-    public bool  landFlag;
+    //public bool  landFlag;
     Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         trackMovement();
-        Debug.Log("update: "+landFlag);
+        //Debug.Log("update: "+landFlag);
     }
 
     void trackMovement(){

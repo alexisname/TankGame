@@ -19,17 +19,19 @@ public class InitialPlayers : MonoBehaviour
     [SerializeField]
     GameObject countDown;
 
-    // [SerializeField]
-    // GameObject _bulletOne;
+    [SerializeField]
+    GameObject _bulletOne;
 
-    // [SerializeField]
-    // GameObject _bulletTwo;
+    [SerializeField]
+    GameObject _bulletTwo;
+
     TankAction playerOneAction;
     TankAction playerTwoAction;
     
     countdown countdown;
-    Bullet bulletOneEx;
-    Bullet bulletTwoEx;
+    // Bullet bulletOneEx;
+    // Bullet bulletTwoEx;
+ 
     public float turnTime = 5.0f;
     float lastTurnTime = 0f;
     
@@ -41,17 +43,17 @@ public class InitialPlayers : MonoBehaviour
         playerTwoAction = playerTwo.GetComponent<TankAction>();
         playerOneAction.isTurn = true;
         playerTwoAction.isTurn = false;
-        countdown = countDown.GetComponent<countdown>();
-        // bulletOneEx = _bulletOne.GetComponent<Bullet>();
-        // bulletTwoEx = _bulletTwo.GetComponent<Bullet>();
+        countdown = countDown.GetComponent<countdown>();        
     }
 
     // Update is called once per frame   
     void Update() {
+        // bulletOneEx = _bulletOne.GetComponent<Bullet>();
+        // bulletTwoEx = _bulletTwo.GetComponent<Bullet>();
         // Debug.Log(bulletOneEx.land);
         // Debug.Log(bulletTwoEx.land);
         float timeDelta = Time.time - lastTurnTime;
-        if(timeDelta>=turnTime  ){
+        if(timeDelta>=turnTime || (playerOneAction.hasFired && playerOneAction.firedBullet==null) || (playerTwoAction.hasFired && playerTwoAction.firedBullet==null)){
             changeTurn();
             // bulletOneEx.land = false;
             // bulletTwoEx.land = false;

@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 3346418010550456618}
   - component: {fileID: 4302484456379849564}
   m_Layer: 7
-  m_Name: tanks_tankTracks1
+  m_Name: playerOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

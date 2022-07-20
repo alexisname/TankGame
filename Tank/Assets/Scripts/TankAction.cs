@@ -43,6 +43,7 @@ public class TankAction : MonoBehaviour
     [SerializeField]
     float fireSpeed = 500.0f;
 
+    public bool hasFired;
     
     GameObject[] _points;
 
@@ -52,6 +53,8 @@ public class TankAction : MonoBehaviour
     InputAction _fireInput;
     InputAction _steeringInput;
     public static bool _playerTurn;
+
+    public GameObject firedBullet;
 
     float _rotationSpeed = 0.1f;
     const float ROTATION_MIN = 0.0f;
@@ -63,6 +66,7 @@ public class TankAction : MonoBehaviour
     public bool isTurn = false;
 
     bool facingRight;
+    
     InputAction _rotateInput;
     Vector2 direction;
 
@@ -71,6 +75,7 @@ public class TankAction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         _steeringInput = _playerInput.actions["TankMove"];
         _rotateInput = _playerInput.actions["TurretMove"];
         _fireInput = _playerInput.actions["Fire"];
@@ -93,6 +98,7 @@ public class TankAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float tankAngle = gameObject.transform.eulerAngles.z;
         
         if(health<=0){
                 Instantiate(_explosion,gameObject.transform.position,Quaternion.identity);
@@ -106,6 +112,7 @@ public class TankAction : MonoBehaviour
             for(int i=0; i<_numOfPoints; i++){
             _points[i].SetActive(false);
             }
+            hasFired = false;
         }
         
         if(isTurn){
@@ -113,10 +120,21 @@ public class TankAction : MonoBehaviour
             _points[i].SetActive(true);
             }
             //numOfShot = shots;
-            //Debug.Log(_bulletEmit.localEulerAngles.z);
+            // Debug.Log(tankAngle);
             Vector2 steering = _steeringInput.ReadValue<Vector2>();
-            Vector3 delta = _speed * steering * Time.deltaTime;
-            transform.position = transform.position + delta;
+            bool isUpDown;
+            if(tankAngle>60f && tankAngle<300f){
+                isUpDown = true;
+            }
+            else{
+                isUpDown = false;
+            }
+            if(!isUpDown){
+                Vector3 delta = _speed * steering * Time.deltaTime;
+                transform.position = transform.position + delta;
+            }
+            
+            
 
             Vector2 firePos = _bulletEmit.position;
             Vector2 dirPos = _dirBullet.position;
@@ -132,15 +150,8 @@ public class TankAction : MonoBehaviour
 
             fire();
 
-            // if(health<=0){
-            //     Instantiate(_explosion,gameObject.transform.position,Quaternion.identity);
-            //     Destroy(gameObject);
-            //     for(int i=0; i<_numOfPoints; i++){
-            //     Destroy(_points[i]);
-            //     }
-            // }
 
-            if(steering.x>0 && !facingRight){
+            if(steering.x>0 && !facingRight && !isUpDown){
                 flip();
                 _bulletEmit.rotation *= Quaternion.Euler(0,0,180);
                 // if(_bulletEmit.localEulerAngles.z==0){
@@ -151,7 +162,7 @@ public class TankAction : MonoBehaviour
                 // }       
                     
             }
-            if(steering.x<0 && facingRight){
+            if(steering.x<0 && facingRight && !isUpDown){
                 flip(); 
                 _bulletEmit.rotation *= Quaternion.Euler(0,0,180);
                 // if(_bulletEmit.localEulerAngles.z==0){
@@ -185,7 +196,8 @@ public class TankAction : MonoBehaviour
         if( _fireInput.ReadValue<float>() == 1.0f ){
             float timeDelta = Time.time - _lastShotTime;
             if(timeDelta>=_shotDelay){
-                GameObject firedBullet = Instantiate(_bulletPrefab,_bulletEmit.position,_bulletEmit.rotation);
+                firedBullet = Instantiate(_bulletPrefab,_bulletEmit.position,_bulletEmit.rotation);
+                hasFired = true;
                 firedBullet.GetComponent<Rigidbody2D>().AddForce(_bulletEmit.right*fireSpeed/* *mass */, ForceMode2D.Impulse);
                 numOfShot--;
                 //Debug.Log(numOfShot);

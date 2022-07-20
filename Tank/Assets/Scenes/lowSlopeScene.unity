@@ -655,11 +655,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f201c95fb78c63849bcb9054ce54ccb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tankPrefabOne: {fileID: 6350210955013263178, guid: 17806ae33ea9c1d46b4af81dab0dc845, type: 3}
-  _tankPrefabTwo: {fileID: 5385185325109634043, guid: d5af6e907cb2985428bfa6325cbdece7, type: 3}
+  _tankPrefabOne: {fileID: 5385185325109634043, guid: d5af6e907cb2985428bfa6325cbdece7, type: 3}
+  _tankPrefabTwo: {fileID: 6350210955013263178, guid: 17806ae33ea9c1d46b4af81dab0dc845, type: 3}
   _locationOne: {fileID: 435271552}
   _locationTwo: {fileID: 663354409}
   countDown: {fileID: 197857362}
+  _bulletOne: {fileID: 5218308457530720953, guid: af2f9c83735726d46b996042237fa2e8, type: 3}
+  _bulletTwo: {fileID: 3679321311869428986, guid: 443f895c5350ffc43a5f39e4be1373ef, type: 3}
   turnTime: 10
 --- !u!4 &1654776431
 Transform:
