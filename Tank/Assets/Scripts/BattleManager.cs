@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InitialPlayers : MonoBehaviour
+public class BattleManager : MonoBehaviour
 {
     [SerializeField]
     GameObject _tankPrefabOne;
@@ -53,14 +53,18 @@ public class InitialPlayers : MonoBehaviour
         // Debug.Log(bulletOneEx.land);
         // Debug.Log(bulletTwoEx.land);
         float timeDelta = Time.time - lastTurnTime;
-        if(timeDelta>=turnTime || (playerOneAction.hasFired && playerOneAction.firedBullet==null) || (playerTwoAction.hasFired && playerTwoAction.firedBullet==null)){
+        if(timeDelta>=turnTime || (playerOneAction.hasFired && playerOneAction.firedBullet==null) || (playerTwoAction.hasFired && playerTwoAction.firedBullet==null)
+            || playerOneAction.hasReset || playerTwoAction.hasReset){
             changeTurn();
             // bulletOneEx.land = false;
             // bulletTwoEx.land = false;
             lastTurnTime = Time.time;
         }
+        // Debug.Log("turn one: "+playerOneAction.isTurn);
+        // Debug.Log("turn two: "+playerTwoAction.isTurn);
     }
     void changeTurn(){
+        Debug.Log("change turn");
         countdown.secondsLeft = 10;
         if(playerOneAction.isTurn){
             playerOneAction.isTurn = false;

@@ -44,14 +44,18 @@ public class TankAction : MonoBehaviour
     float fireSpeed = 500.0f;
 
     public bool hasFired;
+    public int resetLimit = 2;
+    public bool hasReset;
     
     GameObject[] _points;
 
         
     float _shotDelay;
     float _lastShotTime;
+    float _lastResetTime;
     InputAction _fireInput;
     InputAction _steeringInput;
+    InputAction _resetInput;
     public static bool _playerTurn;
 
     public GameObject firedBullet;
@@ -79,6 +83,8 @@ public class TankAction : MonoBehaviour
         _steeringInput = _playerInput.actions["TankMove"];
         _rotateInput = _playerInput.actions["TurretMove"];
         _fireInput = _playerInput.actions["Fire"];
+        _resetInput = _playerInput.actions["Reset"];
+
         _lastShotTime = 0.0f;
         _shotDelay = 0.5f;
         _points = new GameObject[_numOfPoints];
@@ -113,6 +119,8 @@ public class TankAction : MonoBehaviour
             _points[i].SetActive(false);
             }
             hasFired = false;
+            hasReset = false;
+            Debug.Log("reset changed");
         }
         
         if(isTurn){
@@ -172,8 +180,12 @@ public class TankAction : MonoBehaviour
                 //     _bulletEmit.rotation *= Quaternion.Euler(0,0,-180); 
                 // }            
             } 
-        }
-                
+            if(!hasReset && _resetInput.ReadValue<float>()==1.0f && resetLimit>0){                            
+                resetTank();
+                resetLimit--;
+                hasReset = true;               
+            }
+        }                
     }
 
     public void rotate(){
@@ -184,6 +196,10 @@ public class TankAction : MonoBehaviour
         currRotation.z = Mathf.Clamp(currRotation.z + rotation, ROTATION_MIN, ROTATION_MAX);
         _turret.localRotation = Quaternion.Euler(currRotation);
 
+    }
+
+    public void resetTank(){
+        gameObject.transform.eulerAngles = new Vector3(0,0,0);
     }
 
     Vector2 pointPosition(float t){
