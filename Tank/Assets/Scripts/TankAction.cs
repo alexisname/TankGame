@@ -22,7 +22,8 @@ public class TankAction : MonoBehaviour
     Transform _dirBullet;
 
     [SerializeField]
-    GameObject _bulletPrefab;  
+    GameObject _bulletPrefab; 
+
     [SerializeField]
     GameObject _enemyBulletPrefab;
 
@@ -32,18 +33,17 @@ public class TankAction : MonoBehaviour
     [SerializeField]
     GameObject _point;
 
-
     [SerializeField]
     int _numOfPoints;
 
     [SerializeField]
     float _spaceBetweenPoints;
 
-    // [SerializeField]
-    // Button _turnButton;   
-
     [SerializeField]
     float fireSpeed = 500.0f;
+
+    [SerializeField]
+    HealthBar healthBar;
 
     public bool hasFired;
     public int resetLimit = 2;
@@ -76,13 +76,13 @@ public class TankAction : MonoBehaviour
     
     InputAction _rotateInput;
     Vector2 direction;
-
     SpriteRenderer srPoints;
+    //HealthBar healthbar;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //healthbar = _health.GetComponent<HealthBar>();
         _steeringInput = _playerInput.actions["TankMove"];
         _rotateInput = _playerInput.actions["TurretMove"];
         _fireInput = _playerInput.actions["Fire"];
@@ -93,7 +93,7 @@ public class TankAction : MonoBehaviour
         _points = new GameObject[_numOfPoints];
 
         EnemyBullet = _enemyBulletPrefab.GetComponent<Bullet>();
-
+        
         for(int i=0; i<_numOfPoints; i++){
             _points[i] = Instantiate(_point, _bulletEmit.position, Quaternion.identity);
         }
@@ -104,11 +104,13 @@ public class TankAction : MonoBehaviour
             facingRight = false;
         }
         srPoints = _point.GetComponent<SpriteRenderer>();
+        healthBar.setMaxHealth(health);
     }
 
     // Update is called once per frame
     void Update()
     {
+        healthBar.SetHealth(health);
         float tankAngle = gameObject.transform.eulerAngles.z;
         
         if(health<=0){
