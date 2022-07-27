@@ -23,6 +23,8 @@ public class TankAction : MonoBehaviour
 
     [SerializeField]
     GameObject _bulletPrefab;  
+    [SerializeField]
+    GameObject _enemyBulletPrefab;
 
     [SerializeField]
     GameObject _explosion;
@@ -56,6 +58,7 @@ public class TankAction : MonoBehaviour
     InputAction _fireInput;
     InputAction _steeringInput;
     InputAction _resetInput;
+    Bullet EnemyBullet;
     public static bool _playerTurn;
 
     public GameObject firedBullet;
@@ -89,6 +92,8 @@ public class TankAction : MonoBehaviour
         _shotDelay = 0.5f;
         _points = new GameObject[_numOfPoints];
 
+        EnemyBullet = _enemyBulletPrefab.GetComponent<Bullet>();
+
         for(int i=0; i<_numOfPoints; i++){
             _points[i] = Instantiate(_point, _bulletEmit.position, Quaternion.identity);
         }
@@ -121,6 +126,7 @@ public class TankAction : MonoBehaviour
             hasFired = false;
             hasReset = false;
             Debug.Log("reset changed");
+            numOfShot = shots;
         }
         
         if(isTurn){
@@ -251,7 +257,7 @@ public class TankAction : MonoBehaviour
     // }
     void OnCollisionEnter2D(Collision2D other){
         if(other.collider.tag == "bullet"){
-            health -= 20;
+            health -= EnemyBullet._damage;
         }        
     }
     

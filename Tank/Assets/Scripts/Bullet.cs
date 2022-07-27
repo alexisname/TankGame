@@ -9,6 +9,8 @@ public class Bullet : MonoBehaviour
 
     [SerializeField]
     float _radius = 3.0f;
+    public int _damage = 20;
+    
 
     //public bool  landFlag;
     Rigidbody2D rb;

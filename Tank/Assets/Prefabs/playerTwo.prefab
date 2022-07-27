@@ -321,6 +321,7 @@ MonoBehaviour:
   _bulletEmit: {fileID: 1801524379740351360}
   _dirBullet: {fileID: 2065428581482383952}
   _bulletPrefab: {fileID: 3679321311869428986, guid: 443f895c5350ffc43a5f39e4be1373ef, type: 3}
+  _enemyBulletPrefab: {fileID: 5218308457530720953, guid: af2f9c83735726d46b996042237fa2e8, type: 3}
   _explosion: {fileID: 139366, guid: 0e5f311bdf00cb0479351aab7ab17f31, type: 3}
   _point: {fileID: 858201297152750243, guid: ca84283929ce78a4b8e40ad15012486c, type: 3}
   _numOfPoints: 8
@@ -330,7 +331,7 @@ MonoBehaviour:
   resetLimit: 2
   hasReset: 0
   firedBullet: {fileID: 0}
-  health: 100
+  health: 120
   numOfShot: 2
   shots: 2
   isTurn: 0

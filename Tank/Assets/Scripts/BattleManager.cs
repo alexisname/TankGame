@@ -53,7 +53,8 @@ public class BattleManager : MonoBehaviour
         // Debug.Log(bulletOneEx.land);
         // Debug.Log(bulletTwoEx.land);
         float timeDelta = Time.time - lastTurnTime;
-        if(timeDelta>=turnTime || (playerOneAction.hasFired && playerOneAction.firedBullet==null) || (playerTwoAction.hasFired && playerTwoAction.firedBullet==null)
+        if(timeDelta>=turnTime ||(playerOneAction.numOfShot==0 && (playerOneAction.hasFired && playerOneAction.firedBullet==null))||
+             (playerTwoAction.numOfShot==0&&(playerTwoAction.hasFired && playerTwoAction.firedBullet==null))
             || playerOneAction.hasReset || playerTwoAction.hasReset){
             changeTurn();
             // bulletOneEx.land = false;
