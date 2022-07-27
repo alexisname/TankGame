@@ -73,6 +73,8 @@ public class TankAction : MonoBehaviour
     public bool isTurn = false;
 
     bool facingRight;
+
+    float bulletgravity;
     
     InputAction _rotateInput;
     Vector2 direction;
@@ -93,6 +95,7 @@ public class TankAction : MonoBehaviour
         _points = new GameObject[_numOfPoints];
 
         EnemyBullet = _enemyBulletPrefab.GetComponent<Bullet>();
+        bulletgravity = _bulletPrefab.GetComponent<Rigidbody2D>().gravityScale;
         
         for(int i=0; i<_numOfPoints; i++){
             _points[i] = Instantiate(_point, _bulletEmit.position, Quaternion.identity);
@@ -212,7 +215,7 @@ public class TankAction : MonoBehaviour
 
     Vector2 pointPosition(float t){
         Vector2 p = _bulletEmit.position;               
-        Vector2 pointPos = p + (direction.normalized*fireSpeed*t) + (0.5f*Physics2D.gravity*(t*t));
+        Vector2 pointPos = p + (direction.normalized*fireSpeed*t) + (0.5f*Physics2D.gravity*(t*t)*bulletgravity);
         return pointPos;
     }
 

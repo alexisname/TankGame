@@ -579,7 +579,7 @@ MonoBehaviour:
   _point: {fileID: 858201297152750243, guid: ca84283929ce78a4b8e40ad15012486c, type: 3}
   _numOfPoints: 8
   _spaceBetweenPoints: 0.05
-  fireSpeed: 10
+  fireSpeed: 5
   healthBar: {fileID: 6798725187237124660}
   hasFired: 0
   resetLimit: 2
