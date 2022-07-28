@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     float _radius = 3.0f;
     public int _damage = 20;
+    public bool hasLanded = false;
     
 
     //public bool  landFlag;
@@ -47,10 +48,21 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other) {
         if(other.collider.tag == "Terrain"){
+
             Terrain.instance.DestroyTerrain(other.contacts[0].point, _radius);
             // Instantiate(_explosion,gameObject.transform.position,Quaternion.identity);
         }
+        Debug.Log("before action");
+        if(other.collider.attachedRigidbody!=null){
+            TankAction tankAction = other.collider.attachedRigidbody.GetComponent<TankAction>();
+            if(tankAction!=null){
+                tankAction.health -= _damage;
+            }
+        }
+        
+        Debug.Log("after action");
         Instantiate(_explosion,gameObject.transform.position,Quaternion.identity);
-        Destroy(gameObject);
+        hasLanded = true;
+        Debug.Log("after landed");
     }
 }

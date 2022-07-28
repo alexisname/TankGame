@@ -24,8 +24,8 @@ public class TankAction : MonoBehaviour
     [SerializeField]
     GameObject _bulletPrefab; 
 
-    [SerializeField]
-    GameObject _enemyBulletPrefab;
+    // [SerializeField]
+    // GameObject _enemyBulletPrefab;
 
     [SerializeField]
     GameObject _explosion;
@@ -49,6 +49,7 @@ public class TankAction : MonoBehaviour
     public int resetLimit = 2;
     public bool hasReset;
     
+    
     GameObject[] _points;
 
         
@@ -59,9 +60,9 @@ public class TankAction : MonoBehaviour
     InputAction _steeringInput;
     InputAction _resetInput;
     Bullet EnemyBullet;
-    public static bool _playerTurn;
+    
 
-    public GameObject firedBullet;
+    public List<GameObject> firedBullets = new List<GameObject>();
 
     float _rotationSpeed = 0.1f;
     const float ROTATION_MIN = 0.0f;
@@ -94,7 +95,7 @@ public class TankAction : MonoBehaviour
         _shotDelay = 0.5f;
         _points = new GameObject[_numOfPoints];
 
-        EnemyBullet = _enemyBulletPrefab.GetComponent<Bullet>();
+        // EnemyBullet = _enemyBulletPrefab.GetComponent<Bullet>();
         bulletgravity = _bulletPrefab.GetComponent<Rigidbody2D>().gravityScale;
         
         for(int i=0; i<_numOfPoints; i++){
@@ -113,6 +114,29 @@ public class TankAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // int idxRemove = -1;
+        // GameObject fb;
+        // for(int i=0; i<firedBullets.Count; i++){
+        //     fb = (GameObject)firedBullets[i];
+        //     if(fb.GetComponent<Bullet>().hasLanded){                            
+        //         Destroy(fb);
+        //         idxRemove = i;
+        //         break;  
+        //     }
+        // }
+        // if(idxRemove>=0) {
+        //     firedBullets.RemoveAt(idxRemove);
+        // }
+        foreach(GameObject fb in firedBullets){
+            if(fb.GetComponent<Bullet>().hasLanded){
+                Destroy(fb);
+            }
+        }
+        firedBullets.RemoveAll(bulletLanded);
+        bool bulletLanded(GameObject fb){
+            return fb.GetComponent<Bullet>().hasLanded;
+        }
+        
         healthBar.SetHealth(health);
         float tankAngle = gameObject.transform.eulerAngles.z;
         
@@ -130,7 +154,7 @@ public class TankAction : MonoBehaviour
             }
             hasFired = false;
             hasReset = false;
-            Debug.Log("reset changed");
+            //Debug.Log("reset changed");
             numOfShot = shots;
         }
         
@@ -220,10 +244,11 @@ public class TankAction : MonoBehaviour
     }
 
     void fire(){
-        if( _fireInput.ReadValue<float>() == 1.0f ){
+        if(numOfShot>0 && _fireInput.ReadValue<float>() == 1.0f){
             float timeDelta = Time.time - _lastShotTime;
             if(timeDelta>=_shotDelay){
-                firedBullet = Instantiate(_bulletPrefab,_bulletEmit.position,_bulletEmit.rotation);
+                GameObject firedBullet = Instantiate(_bulletPrefab,_bulletEmit.position,_bulletEmit.rotation);
+                firedBullets.Add(firedBullet);
                 hasFired = true;
                 firedBullet.GetComponent<Rigidbody2D>().AddForce(_bulletEmit.right*fireSpeed/* *mass */, ForceMode2D.Impulse);
                 numOfShot--;
@@ -259,11 +284,12 @@ public class TankAction : MonoBehaviour
         
     //     health -= 20;
         
+    // // }
+    // void OnCollisionEnter2D(Collision2D other){
+    //     Bullet bullet = other.collider.GetComponent<Bullet>();
+    //     if(bullet!=null){
+    //         health -= bullet._damage;
+    //     }                                 
     // }
-    void OnCollisionEnter2D(Collision2D other){
-        if(other.collider.tag == "bullet"){
-            health -= EnemyBullet._damage;
-        }        
-    }
     
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class BattleManager : MonoBehaviour
  
     public float turnTime = 5.0f;
     float lastTurnTime = 0f;
+    public static int winnerIdx;
     
     void Start()
     {
@@ -43,7 +45,8 @@ public class BattleManager : MonoBehaviour
         playerTwoAction = playerTwo.GetComponent<TankAction>();
         playerOneAction.isTurn = true;
         playerTwoAction.isTurn = false;
-        countdown = countDown.GetComponent<countdown>();        
+        countdown = countDown.GetComponent<countdown>();
+        lastTurnTime = Time.time;        
     }
 
     // Update is called once per frame   
@@ -53,8 +56,8 @@ public class BattleManager : MonoBehaviour
         // Debug.Log(bulletOneEx.land);
         // Debug.Log(bulletTwoEx.land);
         float timeDelta = Time.time - lastTurnTime;
-        if(timeDelta>=turnTime ||(playerOneAction.numOfShot==0 && (playerOneAction.hasFired && playerOneAction.firedBullet==null))||
-             (playerTwoAction.numOfShot==0&&(playerTwoAction.hasFired && playerTwoAction.firedBullet==null))
+        if(timeDelta>=turnTime ||(playerOneAction.numOfShot==0 && (playerOneAction.hasFired && playerOneAction.firedBullets.Count==0))||
+             (playerTwoAction.numOfShot==0&&(playerTwoAction.hasFired && playerTwoAction.firedBullets.Count==0))
             || playerOneAction.hasReset || playerTwoAction.hasReset){
             changeTurn();
             // bulletOneEx.land = false;
@@ -63,6 +66,18 @@ public class BattleManager : MonoBehaviour
         }
         // Debug.Log("turn one: "+playerOneAction.isTurn);
         // Debug.Log("turn two: "+playerTwoAction.isTurn);
+        if(playerTwoAction==null){
+            winnerIdx = 1;
+            Invoke("endGame", 2f);
+        }
+        if(playerOneAction==null){
+            winnerIdx = 2;
+            Invoke("endGame", 2f);
+        }
+    }
+
+    void endGame(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
     void changeTurn(){
         Debug.Log("change turn");
