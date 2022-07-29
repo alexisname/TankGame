@@ -477,9 +477,9 @@ GameObject:
   - component: {fileID: 8662952659168573194}
   - component: {fileID: 4178804829804328357}
   - component: {fileID: 7609081423111814825}
-  - component: {fileID: 8205325295964032477}
   - component: {fileID: 3346418010550456618}
   - component: {fileID: 4302484456379849564}
+  - component: {fileID: 9016285058371043437}
   m_Layer: 7
   m_Name: playerOne
   m_TagString: Untagged
@@ -568,7 +568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1edbd059a6f67e940aa5d9ffcbc57036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInput: {fileID: 8205325295964032477}
+  _playerInput: {fileID: 9016285058371043437}
   _speed: 1
   _turret: {fileID: 4669757889875927970}
   _bulletEmit: {fileID: 1712550184200382388}
@@ -588,36 +588,6 @@ MonoBehaviour:
   numOfShot: 3
   shots: 3
   isTurn: 0
---- !u!114 &8205325295964032477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5385185325109634043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: f0df4ee4f15d5f5448dbd2b25d293737, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: KeyBoard
-  m_DefaultActionMap: KeyboardP1
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!50 &3346418010550456618
 Rigidbody2D:
   serializedVersion: 4
@@ -665,6 +635,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.74, y: 0.16890213}
   m_EdgeRadius: 0
+--- !u!114 &9016285058371043437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5385185325109634043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: f0df4ee4f15d5f5448dbd2b25d293737, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: TankControl
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &6360389414929839339
 GameObject:
   m_ObjectHideFlags: 0

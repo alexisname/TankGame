@@ -19,6 +19,6 @@ public class ResetNumTwo : MonoBehaviour
     }
     void Update(){
         resetLimit = BattleManager.resetLimitTwo;
-        reset.SetText($"Player One Reset Left: "+resetLimit);
+        reset.SetText($"Player Two Reset Left: "+resetLimit);
     }
 }
