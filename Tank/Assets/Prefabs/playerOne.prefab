@@ -574,7 +574,6 @@ MonoBehaviour:
   _bulletEmit: {fileID: 1712550184200382388}
   _dirBullet: {fileID: 1556975252382316588}
   _bulletPrefab: {fileID: 5218308457530720953, guid: af2f9c83735726d46b996042237fa2e8, type: 3}
-  _enemyBulletPrefab: {fileID: 3679321311869428986, guid: 443f895c5350ffc43a5f39e4be1373ef, type: 3}
   _explosion: {fileID: 139366, guid: 0e5f311bdf00cb0479351aab7ab17f31, type: 3}
   _point: {fileID: 858201297152750243, guid: ca84283929ce78a4b8e40ad15012486c, type: 3}
   _numOfPoints: 8
@@ -584,7 +583,7 @@ MonoBehaviour:
   hasFired: 0
   resetLimit: 2
   hasReset: 0
-  firedBullet: {fileID: 0}
+  firedBullets: []
   health: 100
   numOfShot: 3
   shots: 3
@@ -614,9 +613,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: TankControl
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: KeyBoard
+  m_DefaultActionMap: KeyboardP1
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!50 &3346418010550456618

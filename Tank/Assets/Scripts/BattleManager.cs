@@ -80,7 +80,7 @@ public class BattleManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
     void changeTurn(){
-        Debug.Log("change turn");
+        //Debug.Log("change turn");
         countdown.secondsLeft = 10;
         if(playerOneAction.isTurn){
             playerOneAction.isTurn = false;

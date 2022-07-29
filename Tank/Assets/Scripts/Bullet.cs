@@ -47,12 +47,13 @@ public class Bullet : MonoBehaviour
     // }
 
     void OnCollisionEnter2D(Collision2D other) {
+        shake();
         if(other.collider.tag == "Terrain"){
 
             Terrain.instance.DestroyTerrain(other.contacts[0].point, _radius);
             // Instantiate(_explosion,gameObject.transform.position,Quaternion.identity);
         }
-        Debug.Log("before action");
+        //Debug.Log("before action");
         if(other.collider.attachedRigidbody!=null){
             TankAction tankAction = other.collider.attachedRigidbody.GetComponent<TankAction>();
             if(tankAction!=null){
@@ -60,9 +61,13 @@ public class Bullet : MonoBehaviour
             }
         }
         
-        Debug.Log("after action");
+        //Debug.Log("after action");
         Instantiate(_explosion,gameObject.transform.position,Quaternion.identity);
         hasLanded = true;
-        Debug.Log("after landed");
+        //Debug.Log("after landed");
+    }
+
+    void shake(){
+        Camera.main.GetComponent<CameraShake>().shakeDuration = 0.2f;
     }
 }
