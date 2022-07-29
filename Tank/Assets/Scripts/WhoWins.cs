@@ -7,7 +7,7 @@ public class WhoWins : MonoBehaviour
 {
     
     public TextMeshProUGUI winner;
-    public static int winnerIdx;
+    int winnerIdx;
 
 
     // Start is called before the first frame update
@@ -26,7 +26,4 @@ public class WhoWins : MonoBehaviour
                 winner.SetText($"Player Two WON");
             }
     }
-
-    // Update is called once per frame
-
 }

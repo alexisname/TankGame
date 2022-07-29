@@ -20,11 +20,6 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     GameObject countDown;
 
-    [SerializeField]
-    GameObject _bulletOne;
-
-    [SerializeField]
-    GameObject _bulletTwo;
 
     TankAction playerOneAction;
     TankAction playerTwoAction;
@@ -36,6 +31,9 @@ public class BattleManager : MonoBehaviour
     public float turnTime = 5.0f;
     float lastTurnTime = 0f;
     public static int winnerIdx;
+
+    public static int resetLimitOne;
+    public static int resetLimitTwo;
     
     void Start()
     {
@@ -55,6 +53,8 @@ public class BattleManager : MonoBehaviour
         // bulletTwoEx = _bulletTwo.GetComponent<Bullet>();
         // Debug.Log(bulletOneEx.land);
         // Debug.Log(bulletTwoEx.land);
+        resetLimitOne = playerOneAction.resetLimit;
+        resetLimitTwo = playerTwoAction.resetLimit;
         float timeDelta = Time.time - lastTurnTime;
         if(timeDelta>=turnTime ||(playerOneAction.numOfShot==0 && (playerOneAction.hasFired && playerOneAction.firedBullets.Count==0))||
              (playerTwoAction.numOfShot==0&&(playerTwoAction.hasFired && playerTwoAction.firedBullets.Count==0))

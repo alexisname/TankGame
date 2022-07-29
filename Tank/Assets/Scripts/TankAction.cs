@@ -59,7 +59,7 @@ public class TankAction : MonoBehaviour
     InputAction _fireInput;
     InputAction _steeringInput;
     InputAction _resetInput;
-    Bullet EnemyBullet;
+
     
 
     public List<GameObject> firedBullets = new List<GameObject>();
